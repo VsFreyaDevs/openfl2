@@ -127,6 +127,21 @@ import lime.ui.Gamepad;
 	**/
 	public function stopCachingSamples():Void {}
 
+	#if lime
+	@:noCompletion private function set_gamepad(gamepad:Gamepad):Void
+	{
+		__gamepad = gamepad;
+	}
+	#end
+
+	// Rumble
+	public function rumble(duration:Int, largeStrength:Float, smallStrength:Float):Void
+	{
+		#if lime
+		if (__gamepad != null) __gamepad.rumble(duration, largeStrength, smallStrength);
+		#end
+	}
+		
 	// Get & Set Methods
 	@:noCompletion private function get_numControls():Int
 	{
